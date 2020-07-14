@@ -34,7 +34,7 @@ class AppInitializator {
             CampScheduleDto campScheduleDto = new CampScheduleDto();
             campScheduleDto.setId(id);
             campScheduleDto.setCalendarDay(DateUtil.normalizeCalendar(now));
-            campScheduleDto.setIsAvailable(0);
+            campScheduleDto.setIsAvailable(1);
             campScheduleDto.setVersion(1l);
             oneYearEmptySchedule.add(campScheduleDto);
             id ++;

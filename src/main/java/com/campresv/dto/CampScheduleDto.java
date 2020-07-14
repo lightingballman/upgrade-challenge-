@@ -21,7 +21,7 @@ public class CampScheduleDto {
     private Long resvationId;
 
     @Column(name = "is_available")
-    private Integer isAvailable = 0;
+    private Integer isAvailable = 1;
 
     @Version
     @Column(name = "version")
@@ -60,11 +60,11 @@ public class CampScheduleDto {
     }
 
     public void setNotAvailable() {
-        this.isAvailable = 1;
+        this.isAvailable = 0;
     }
 
     public void setAvailable() {
-        this.isAvailable = 0;
+        this.isAvailable = 1;
     }
 
     public Long getVersion() {
@@ -76,7 +76,7 @@ public class CampScheduleDto {
     }
 
     public boolean isAvailable(){
-        return this.isAvailable == null || isAvailable == 0;
+        return this.isAvailable == null || isAvailable == 1;
     }
 }
 
