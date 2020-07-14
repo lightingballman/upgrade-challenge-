@@ -12,6 +12,7 @@ import com.campresv.service.ReservationValidator;
 import com.campresv.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/campsite")
 public class CampSiteController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class CampSiteController {
     @Autowired
     private CampsiteReservationService campsiteReservationService;
 
-    @RequestMapping("/campsite/query")
+    @PostMapping("/query")
     public ResponseEntity<?> querySchedule(@RequestBody CampsiteQueryReqModel reqModel){
         String err = ReservationValidator.validateQueryRequest(reqModel);
         if(err == null){
@@ -39,7 +41,7 @@ public class CampSiteController {
         }
     }
 
-    @RequestMapping("/campsite/reserve")
+    @PostMapping("/reserve")
     public ResponseEntity<?> reserve(@RequestBody CampsiteReservationReqModel reqModel){
         String err = ReservationValidator.validateReservation(reqModel);
         if(err == null){ //no error
@@ -50,7 +52,7 @@ public class CampSiteController {
         }
     }
 
-    @RequestMapping("/campsite/reserve/cancel")
+    @PostMapping("/reserve/cancel")
     public ResponseEntity<?> cancelReservation(@RequestBody CampsiteReservationCancelReqModel reqModel){
         try{
             ReservationDto reservation = campsiteReservationService.cancelReservation(reqModel);
@@ -60,7 +62,7 @@ public class CampSiteController {
         }
     }
 
-    @RequestMapping("/campsite/reserve/update")
+    @PostMapping("/reserve/update")
     public ResponseEntity<?> updateReservation(@RequestBody CampsiteReservationModificationReqModel reqModel){
         String err = ReservationValidator.validateUpdateReservation(reqModel);
         if(err != null){ //no error

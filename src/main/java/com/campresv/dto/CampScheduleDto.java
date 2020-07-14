@@ -24,6 +24,7 @@ public class CampScheduleDto {
     private Integer isAvailable = 0;
 
     @Version
+    @Column(name = "version")
     private Long version;
 
     public Long getId() {
