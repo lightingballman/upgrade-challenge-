@@ -85,7 +85,7 @@ public class CampsiteReservationService {
     }
 
     @Transactional
-    ReservationDto cancel(CampsiteReservationCancelReqModel request, ReservationDto existing ){
+    public ReservationDto cancel(CampsiteReservationCancelReqModel request, ReservationDto existing ){
         //1. mark available
         campScheduleService.markAvailable(request.reservationId);
 
@@ -120,7 +120,7 @@ public class CampsiteReservationService {
     }
 
     @Transactional
-    ReservationDto update(CampsiteReservationModificationReqModel request, ReservationDto existing ) throws ReservationException{
+    public ReservationDto update(CampsiteReservationModificationReqModel request, ReservationDto existing ) throws ReservationException{
         //1. Make reservation canceled
         existing.setStartDay(DateUtil.parseDateNowOnError(request.startDay));
         existing.setEndDay(DateUtil.parseDateNowOnError(request.endDay));
